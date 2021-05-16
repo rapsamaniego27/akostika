@@ -1,12 +1,54 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: "en-US" }}">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
-  </head>
-  <body>
-    {{ content }}
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  <meta name="og:title" property="og:title" content="HTML Webpack">
+  <meta name="description"
+    content="This is my own boilerplate in making Front End Projects. I'm currently using Laravel Mix and Webpack.">
+  <meta property="og:image" content="#">
+  <meta property="og:url" content="#">
+
+
+  <title>HTML Starter</title>
+
+  <!-- Row Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.min.css">
+  <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+  <div id="wrapper">
+    <header class="header__main">
+      <!-- Header here -->
+      <h1 class="header__title">AKOSTIKA</h1>
+      <nav>
+        <ul>
+          <li>Home</li>
+          <li>Biography</li>
+          <li>Gallery</li>
+          <li>Gigs</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
+    </header>
+    <div id="main">
+      {{ content }}
+    </div>
+    <footer>
+      footer
+    </footer>
+  </div>
+
+  <!-- Row Scripts -->
+  <script src="{{site.baseurl}}/assets/js/app.js" defer></script>
+  <script src="https://kit.fontawesome.com/e33b567028.js" defer></script>
+</body>
+
 </html>
