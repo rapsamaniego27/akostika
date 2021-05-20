@@ -1,17 +1,31 @@
 
-.btn-success{
+.cbtn-success{
   @include btn-background(color('success'));
 }
 
-.btn-danger{
+.cbtn-danger{
   @include btn-background(color('danger'));
 }
 
-.btn-info{
+.cbtn-info{
   @include btn-background(color('info'));
 }
 
-.btn-warning{
+.cbtn-warning{
   @include btn-background(color('warning'));
+}
+
+.cbtn-accent{
+  @include btn-background(color('accent'));
+}
+
+.cbtn-accent__ghost{
+  @include btn-background(color('accent'));
+  background:0;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  display: block;
+  margin: 0 auto;
+  width: 170px;
 }
 

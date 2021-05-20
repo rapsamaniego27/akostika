@@ -1,0 +1,31 @@
+
+.section-gigs__wrapper{
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+
+}
+
+.section-gigs{
+   background: url(../files/violin_background.jpg) top center no-repeat;
+}
+
+.section-gigs__wrapper > * {
+   flex-basis: 30%;
+}
+
+.card{
+  box-shadow: 0 0 36px -15px rgba(0,0,0,0.75);
+  border: 0;
+  border-radius:12px;
+}
+
+.card-subtitle {
+  font-family: $sans-serif;
+  font-weight:normal;
+  font-size:14px;
+}
+
+.card-test{
+  line-height:0.875rem;
+}
