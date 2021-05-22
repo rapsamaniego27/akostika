@@ -1,0 +1,16 @@
+.section-gallery{
+  background: url(../files/lake_background.jpg) top center no-repeat;
+}
+
+.section-gallery__img{
+  width:318px;
+  height:318px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.section-gallery__images{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap:15px;
+}
