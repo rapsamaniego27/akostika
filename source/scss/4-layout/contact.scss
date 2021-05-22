@@ -52,7 +52,7 @@
 
    &:focus{
     outline: 0 !important;
-    filter: drop-shadow( 0 0 0 2px var(--tertiary));
+    filter: drop-shadow( 0 0 0 2px var(--accent));
    }
  }
 
@@ -94,7 +94,7 @@ textarea{
   top:0;
   right:0;
   display:block;
-  background:var(--tertiary);
+  background:var(--accent);
   height: 100%;
   width:4rem;
   pointer-events:none;

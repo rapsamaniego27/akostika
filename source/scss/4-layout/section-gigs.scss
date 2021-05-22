@@ -1,8 +1,14 @@
 
 .section-gigs__wrapper{
   display:flex;
-  justify-content:space-between;
-  align-items: center;
+  flex-wrap: wrap;
+
+  @media only screen and (max-width:576px){
+   flex-direction: column;
+   gap:20px;
+   width:86%;
+   margin:0 auto;
+  }
 
 }
 
@@ -11,13 +17,19 @@
 }
 
 .section-gigs__wrapper > * {
-   flex-basis: 30%;
+   flex: 1 1 30%;
+
+   @media only screen and (max-width:800px){
+    flex: 1 1 36%;
+   }
+
 }
 
 .card{
   box-shadow: 0 0 36px -15px rgba(0,0,0,0.75);
   border: 0;
   border-radius:12px;
+  margin:10px;
 }
 
 .card-subtitle {
