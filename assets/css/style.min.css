@@ -4096,6 +4096,41 @@ footer {
   margin: 0 auto 0 auto;
 }
 
+.cmenu {
+  width: 60vw;
+  height: 100vh;
+  background: var(--primary);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 140001;
+  transform: translateX(100%);
+}
+.cmenu .cmenu__list {
+  padding-left: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.cmenu .cmenu__item {
+  margin-top: 30px;
+}
+.cmenu .cmenu__link {
+  color: var(--white);
+  font-size: 1.5rem;
+}
+.cmenu .cmenu__close {
+  margin-left: auto;
+  display: block;
+  text-align: right;
+}
+
+.cmodal--hide {
+  display: none;
+  cursor: pointer;
+}
+
 .cbtn-success {
   background-color: #9FD356;
   color: #fff;
@@ -4216,7 +4251,7 @@ footer {
   box-shadow: 0 0 0 2px transparent, 0 0 0 3px #F1A208;
 }
 
-.modal {
+.cmodal {
   background: var(--white);
   position: fixed;
   top: 50%;
@@ -4229,7 +4264,7 @@ footer {
   z-index: 14001;
   overflow: hidden;
 }
-.modal .modal-close {
+.cmodal .cmodal-close {
   position: absolute;
   top: 0;
   right: 0;
@@ -4239,9 +4274,9 @@ footer {
   z-index: 1002;
   cursor: pointer;
 }
-.modal .modal-guts {
+.cmodal .cmodal-guts {
   /* other stuff we already covered */
-  /* cover the modal */
+  /* cover the cmodal */
   position: absolute;
   top: 0;
   left: 0;
@@ -4250,21 +4285,21 @@ footer {
   /* let it scroll */
   overflow: auto;
 }
-.modal .modal-guts p {
+.cmodal .cmodal-guts p {
   width: 100%;
   margin-top: 20px;
   margin: 20px auto 0 auto;
 }
-.modal .modal-guts h3 {
+.cmodal .cmodal-guts h3 {
   width: 100%;
   display: inline-block;
 }
-.modal .modal-guts .modal-content {
+.cmodal .cmodal-guts .cmodal-content {
   margin: 20px 30px;
   width: 86%;
 }
 
-.modal-overlay {
+.cmodal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -4273,7 +4308,7 @@ footer {
   background: rgba(var(--dark-rgb), 0.8);
 }
 
-.modal--hide {
+.cmodal--hide {
   display: none;
   cursor: pointer;
 }

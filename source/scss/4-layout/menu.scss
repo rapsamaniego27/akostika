@@ -1,0 +1,41 @@
+.cmenu{
+  width:60vw;
+  height:100vh;
+  background:var(--primary);
+  position:absolute;
+  top:0;
+  right:0;
+  z-index:140001;
+  transform:translateX(100%);
+
+  .cmenu__list{
+    padding-left:0 !important;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .cmenu__item{
+    margin-top:30px;
+  }
+
+  .cmenu__link{
+    color:var(--white);
+    font-size: 1.5rem;
+    
+  }
+
+  .cmenu__close{
+    margin-left: auto;
+    display: block;
+    text-align: right;
+  }
+}
+
+
+
+.cmodal--hide{
+ display:none;
+ cursor:pointer;
+}

@@ -1,4 +1,4 @@
-.modal{
+.cmodal{
   background:var(--white);
   position: fixed;
   top: 50%;
@@ -11,7 +11,7 @@
    z-index: 14001;
   overflow:hidden;
   
-  .modal-close{
+  .cmodal-close{
     position:absolute;
     top:0;
     right:0;
@@ -23,10 +23,10 @@
  }
 
 
-  .modal-guts{
+  .cmodal-guts{
      /* other stuff we already covered */
 
-    /* cover the modal */
+    /* cover the cmodal */
     position: absolute;
     top: 0;
     left: 0;
@@ -48,14 +48,14 @@
      display:inline-block;
     }
 
-    .modal-content{
+    .cmodal-content{
      margin: 20px 30px;
      width:86%;
     }
   }
 }
 
-.modal-overlay{
+.cmodal-overlay{
   position: fixed;
   top: 0;
   left: 0;
@@ -64,7 +64,7 @@
   background:rgba(var(--dark-rgb), 0.8);
 }
 
-.modal--hide{
+.cmodal--hide{
  display:none;
  cursor:pointer;
 }
