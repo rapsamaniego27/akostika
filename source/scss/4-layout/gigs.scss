@@ -1,0 +1,19 @@
+.table__address{
+
+
+  @media only screen and (max-width:576px){
+   display:none;
+  }
+}
+
+td{
+  padding:1rem !important;
+  @media only screen and (max-width:800px){
+   font-size:0.875rem;
+
+   a{
+     font-size:0.875rem !important;
+   }
+  }
+}
+

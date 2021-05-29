@@ -4144,6 +4144,53 @@ footer {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 576px) {
+  .table__address {
+    display: none;
+  }
+}
+
+td {
+  padding: 1rem !important;
+}
+@media only screen and (max-width: 800px) {
+  td {
+    font-size: 0.875rem;
+  }
+  td a {
+    font-size: 0.875rem !important;
+  }
+}
+
+.single-gig__blurb {
+  margin-left: 20px;
+  padding-top: 20px;
+}
+@media only screen and (max-width: 800px) {
+  .single-gig__blurb {
+    margin-right: 20px;
+  }
+}
+
+.single-gig__img {
+  padding: 20px;
+  width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media only screen and (max-width: 800px) {
+  .single-gig__img {
+    width: 100%;
+  }
+}
+
+.single-gig__date,
+.single-gig__time {
+  margin: 0 !important;
+  font-size: 1rem;
+  color: #848484;
+}
+
 .cbtn-success {
   background-color: #9FD356;
   color: #fff;
