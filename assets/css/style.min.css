@@ -3935,6 +3935,10 @@ footer {
   }
 }
 
+.header__secondary {
+  background: var(--primary);
+}
+
 .section-biography {
   background: url(../files/wood-background.jpg) top center no-repeat;
   background-size: cover;
