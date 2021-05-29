@@ -4191,6 +4191,27 @@ td {
   color: #848484;
 }
 
+.gallery__img {
+  width: 318px;
+  height: 178px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 12px;
+}
+
+.gallery__photos {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.gallery__photos > * {
+  flex: 1 1 22%;
+  /* @media only screen and (max-width:800px){
+   flex: 1 1 50%;
+  } */
+}
+
 .cbtn-success {
   background-color: #9FD356;
   color: #fff;
