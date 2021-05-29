@@ -4096,6 +4096,10 @@ footer {
   margin: 0 auto 0 auto;
 }
 
+#wrapper {
+  overflow-x: hidden;
+}
+
 .cmenu {
   width: 60vw;
   height: 100vh;
@@ -4104,7 +4108,8 @@ footer {
   top: 0;
   right: 0;
   z-index: 140001;
-  transform: translateX(100%);
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
 }
 .cmenu .cmenu__list {
   padding-left: 0 !important;
@@ -4124,6 +4129,10 @@ footer {
   margin-left: auto;
   display: block;
   text-align: right;
+}
+
+.cmenu--hide {
+  transform: translateX(100%);
 }
 
 .cmodal--hide {
