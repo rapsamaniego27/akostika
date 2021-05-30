@@ -2,41 +2,49 @@
 layout: secondary
 ---
 
-<div class="container">
-  <h2>Gallery</h2>
+<div class="container mb-60">
+  <h2 class="mt-40">Gallery</h2>
 
-  <div class="gallery__filter">
+  <div class="gallery__filter mt-40">
     <div class="gallery__filter-config row">
       <div class="col-auto">
-        <label for="">Type: </label>
-        <select name="" id="">
-          <option>Photos</option>
-          <option>Videos</option>
-        </select>
+        <label for="" class="gallery__filter-label">Type: </label>
+        <div class="gallery__filter-select">
+          <select name="" id="">
+            <option value="photos">Photos</option>
+            <option value="videos">Videos</option>
+          </select>
+          <span class="gallery__filter-arrow"></span>
+        </div>
       </div>
 
       <div class="col-auto">
-        <label for="">Type: </label>
-        <select name="" id="">
-          <option>2019</option>
-          <option>2018</option>
-        </select>
+        <label for="" class="gallery__filter-label">Year: </label>
+        <div class="gallery__filter-select">
+          <select name="" id="">
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+          </select>
+          <span class="gallery__filter-arrow"></span>
+        </div>
       </div>
     </div>
 
-    <div class="gallery__filter-album row">
-      <label for="">Albums</label>
+    <div class="gallery__filter-album row mt-20">
+      <label for="" class="gallery__filter-label">Albums:</label>
 
       <div class="gallery__filter-album__list">
-        <a href="#" target="_blank" class="">Folk Society</a>
-        <a href="#" target="_blank" class="">Folk Society</a>
-        <a href="#" target="_blank" class="">Folk Society</a>
+        <a href="#" target="_blank" class="gallery__album__item gallery__album__item--current">Folk Society</a>
+        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
+        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
       </div>
     </div>
   </div>
 
+  <span class="gallery__results">12 results found ...</span>
 
-  <div class="gallery__photos">
+
+  <!-- <div class="gallery__photos mt-40">
     <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img2.jpg" alt="" title="" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img3.jpg" alt="" title="" class="gallery__img">
@@ -45,6 +53,50 @@ layout: secondary
     <img src="{{site.baseurl}}/assets/files/img6.jpg" alt="" title="" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img7.jpg" alt="" title="" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img8.jpg" alt="" title="" class="gallery__img">
+  </div> -->
+
+  <div class="gallery__videos mt-40">
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
+
+    <div class="gallery__video">
+      <a href="#" class="gallery__video-icon"><i class="fas fa-play"></i></a>
+      <span class="gallery__video-overlay"></span>
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
+    </div>
   </div>
 </div>
 
