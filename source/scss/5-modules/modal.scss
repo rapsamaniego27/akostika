@@ -12,6 +12,14 @@
   display:flex;
   justify-content:center;
   align-items: center;
+
+  @media only screen and (max-width:1366px){
+     width:90vw;
+  }
+
+  @media only screen and (max-width:576px){
+     width:86vw;
+  }
   
   .cmodal-close{
     position:absolute;
@@ -26,14 +34,29 @@
       color:var(--white);
       pointer-events:none;
     }
+
+    
  }
 
 
   .cmodal-content__image{
     width: 100%;
+    height:80vh;
     max-width: 800px;
     margin: 0 auto;
 
+
+    @media only screen and (max-width:480px){
+     height:70vh;
+    }
+  }
+
+   .cmodal-content__video{
+    width: 80%;
+    margin: 0 auto;
+    @media only screen and (max-width:1366px){
+     width:94%;
+    }
 
     @media only screen and (max-width:480px){
      height:70vh;
@@ -101,7 +124,13 @@
 
 .cmodal-img{
   width:100%;
+  height:100%;
   margin:0 auto;
+  object-fit:contain;
+
+  @media only screen and (max-width:800px){
+   width:90%;
+  }
 }
 
 .cmodal-overlay{
@@ -114,9 +143,20 @@
   z-index:4000;
 }
 
-.cmodal__video{
-  width: 100%;
-  height:auto;
+.cmodal-video{
+  width: 86%;
+  height:76vh;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  margin-top:20px;
+
+  @media all and (orientation:portrait) {
+     width:86%;
+    height:30vh;
+   }
+
 }
 
 .cmodal--hide{
@@ -135,6 +175,14 @@
 .cmodal__prev{
   font-size:3rem;
   color:var(--white);
+
+  @media only screen and (max-width:576px){
+   font-size:1.75rem;
+  }
+
+  &:hover{
+    color:var(--accent) !important;
+  }
     
 }
 
