@@ -41,6 +41,7 @@ class Gallery{
   this.closeModal();
   this.generatePhotosArray();
   this.bindNavigations();
+  this.bindMediaType();
  }
 
  //Methods
@@ -124,6 +125,28 @@ class Gallery{
 
 
    });
+ }
+
+ bindMediaType(){
+   const mediaSelect = document.querySelector('.gallery__filter-select');
+
+    mediaSelect.addEventListener('input', (e)=> {
+      const mediaType = e.target.value;
+
+      const videoModal = document.querySelector('.cmodal-content__video');
+      const photoModal = document.querySelector('.cmodal-content__image');
+
+      if(mediaType == 'videos'){
+       
+        videoModal.classList.remove('cmodal--hide');
+        photoModal.classList.add('cmodal--hide');
+      }
+      
+      if (mediaType == 'photos') {
+        videoModal.classList.add('cmodal--hide');
+        photoModal.classList.remove('cmodal--hide');
+      }
+    });
  }
 }
 /* Notes:
