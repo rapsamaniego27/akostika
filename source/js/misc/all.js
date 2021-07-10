@@ -1,0 +1,2 @@
+const gallery = new Gallery();
+

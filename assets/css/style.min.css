@@ -4197,6 +4197,7 @@ td {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .gallery__photos {
