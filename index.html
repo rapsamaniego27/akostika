@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% assign page = strapi.collections.pages | where:"id", "2" | first %}
+
+
 
 <!-- Row Gigs -->
 <div class="section-gigs pt-40 pb-40">
@@ -8,48 +11,56 @@ layout: default
     <h2 class="ml-sm-20">Gigs</h2>
     
     <div class="section-gigs__wrapper mt-40 pb-30">
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center">New York Bar </h3>
-          <p class="card-subtitle ml-5 mr-5 text-muted text-center">2 Ford St. Filinvest East Homes,
-            Antipolo City</p>
-          <p class="card-text text-center mt-20">
-            September 10, 2021<br>
-            7:00pm - 9:00pm
-          </p>
-          <a href="#" target="_blank" class="btn cbtn-accent__ghost mt-40 mb-10">Read info</a>
+
+     {% assign sorted = strapi.collections.gigs | sort: 'date' | where: 'gig_type', 'Occasional' %}
+
+      {% for gig in sorted limit:3 %}
+
+      {% capture now %}{{'now' | date: '%s' | plus: 0 }}{% endcapture %}
+      {% capture date %}{{gig.date | date: '%s' | plus: 0 }}{% endcapture %}
+
+      {% if date > now %}
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center">{{gig.title}} </h3>
+            <p class="card-subtitle ml-5 mr-5 text-muted text-center">{{gig.address}}</p>
+        
+            <p class="card-text text-center mt-20">
+              {{ gig.date | date:" %B, %-d %Y" }}<br>
+              {{gig.start_time | date: "%I:%M%P" }}
+              {% if gig.end_time %}
+              - {{gig.end_time | date: "%I:%M%P" }}
+              {% endif %}
+            </p>
+        
+        
+            <a href="{{gig.url}}" target="_blank" class="btn cbtn-accent__ghost mt-40 mb-10">Read info</a>
+          </div>
         </div>
-      </div>
+      {% endif %}
     
+      
+      {% endfor %}
+
+      <!-- Regular Gigs -->
+      {% assign reg = strapi.collections.gigs | where: 'gig_type', 'Regular' | first %}
+
       <div class="card">
         <div class="card-body">
-          <h3 class="card-title text-center">New York Bar </h3>
-          <p class="card-subtitle ml-5 mr-5 text-muted text-center">2 Ford St. Filinvest East Homes,
-            Antipolo City</p>
+          <h3 class="card-title text-center">{{reg.title}} </h3>
+          <p class="card-subtitle ml-5 mr-5 text-muted text-center">{{reg.address}}</p>
+
           <p class="card-text text-center mt-20">
-            September 10, 2021<br>
-            7:00pm - 9:00pm
+            {{reg.gig_type}} Gig <br>
           </p>
-          <a href="#" target="_blank" class="btn cbtn-accent__ghost mt-40 mb-10">Read info</a>
-        </div>
-      </div>
-    
-      <div class="card">
-        <div class="card-body">
-          <h3 class="card-title text-center">New York Bar </h3>
-          <p class="card-subtitle ml-5 mr-5 text-muted text-center">2 Ford St. Filinvest East Homes,
-            Antipolo City</p>
-          <p class="card-text text-center mt-20">
-            September 10, 2021<br>
-            7:00pm - 9:00pm
-          </p>
-          <a href="#" target="_blank" class="btn cbtn-accent__ghost mt-40 mb-10">Read info</a>
+      
+          <a href="{{reg.url}}" target="_blank" class="btn cbtn-accent__ghost mt-40 mb-10">Read info</a>
         </div>
       </div>
     
     </div>
 
-    <a href="#" target="_blank" class="btn cbtn-accent btn-gigs">See more</a>
+    <a href="{{site.baseurl}}/gigs/" class="btn cbtn-accent btn-gigs">See more</a>
   </div>
 </div>
 

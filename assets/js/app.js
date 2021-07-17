@@ -298,8 +298,12 @@ function patternTest(pattern, str){
 }
 
 /* patternTest(pattern, str); */
-const gallery = new Gallery();
 
+const galleryFilter = document.querySelector('.gallery__filter');
+
+if (isInPage(galleryFilter)) {
+  const gallery = new Gallery();
+}
 
 const navOpen = document.querySelector('#menuOpen');
 const navOverlay = document.querySelector('#cmodalOverlay');
@@ -317,3 +321,6 @@ const menuet = new Menuet({
 
 //Display output
 
+function isInPage(node) {
+  return (node === document.body) ? false : document.body.contains(node);
+}

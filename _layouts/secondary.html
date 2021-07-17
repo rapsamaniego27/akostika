@@ -29,7 +29,7 @@
       <!-- Header here -->
       <div class="header__top">
         <h1 class="header__title">
-          <a href="#" target="_blank" class="header__title-link">AKOSTIKA</a>
+          <a href="{{site.baseurl}}/" class="header__title-link">AKOSTIKA</a>
         </h1>
 
         <a href="#" target="_blank" class="header__anchor-link" id="menuOpen">
@@ -37,25 +37,7 @@
         </a>
       </div>
 
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-item">
-            <a href="#" class="header__nav-link">Home</a>
-          </li>
-          <li class="header__nav-item">
-            <a href="#" class="header__nav-link">Biography</a>
-          </li>
-          <li class="header__nav-item">
-            <a href="{{site.basurl}}/gallery/" class="header__nav-link">Gallery</a>
-          </li>
-          <li class="header__nav-item">
-            <a href="{{site.basurl}}/gigs/" class="header__nav-link">Gigs</a>
-          </li>
-          <li class="header__nav-item">
-            <a href="#" class="header__nav-link">Contact</a>
-          </li>
-        </ul>
-      </nav>
+      {% include default/main-menu.html %}
     </header>
     <div id="main">
       {{ content }}

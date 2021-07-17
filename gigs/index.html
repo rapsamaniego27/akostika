@@ -2,38 +2,65 @@
 layout: secondary
 ---
 <div class="container mt-40">
-  <h2>Gigs</h2>
+  <h2>Upcoming Gigs</h2>
   <table class="table mt-60">
 
     <tbody>
-      <tr>
-        <td class="table__date">JUNE 14, 2021</td>
-        <td class="table__venue" align="center">WEBMBLEY STADIUM</td>
-        <td class="table__address" align="center">2 FORD ST. FILINVEST EAST HOMES, ANTIPOLO</td>
-        <td class="table__button" align="right">
-            <a href="#" target="_blank" class="cbtn-accent btn">Read Info</a>
-        </td>
-      </tr>
+     
 
-      <tr>
-        <td class="table__date">JUNE 14, 2021</td>
-        <td class="table__venue" align="center">WEBMBLEY STADIUM</td>
-        <td class="table__address" align="center">2 FORD ST. FILINVEST EAST HOMES, ANTIPOLO</td>
-        <td class="table__button" align="right">
-          <a href="#" target="_blank" class="cbtn-accent btn">Read Info</a>
-        </td>
-      </tr>
+      {% assign sorted = strapi.collections.gigs | sort: 'date' %}
 
-      <tr>
-        <td class="table__date">JUNE 14, 2021</td>
-        <td class="table__venue" align="center">WEBMBLEY STADIUM</td>
-        <td class="table__address" align="center">2 FORD ST. FILINVEST EAST HOMES, ANTIPOLO</td>
-        <td class="table__button" align="right">
-          <a href="#" target="_blank" class="cbtn-accent btn">Read Info</a>
-        </td>
-      </tr>
+      {% for gig in sorted  %}
+        <!-- Date captures -->
+        <!-- Grabs the date now and upcoming date -->
+        {% capture now %}{{'now' | date: '%s' | plus: 0 }}{% endcapture %}
+        {% capture date %}{{gig.date | date: '%s' | plus: 0 }}{% endcapture %}
+
+
+        <!-- Compares date today and the upcoming date -->
+        {% if gig.gig_type == 'Occasional' and date > now %}
+          <tr>
+            <td class="table__date">{{ gig.date | date:" %B, %-d %Y" }}</td>
+            <td class="table__venue" align="center">{{ gig.title }}</td>
+            <td class="table__address" align="center">{{ gig.address }}</td>
+            <td class="table__button" align="right">
+              <a href="{{ gig.url }}" target="_blank" class="cbtn-accent btn">Read Info</a>
+            </td>
+          </tr>
+        {% endif %}
+
+      {% endfor %}
 
       
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-40">
+  <h2>Regular Gigs</h2>
+  <table class="table mt-60">
+
+    <tbody>
+      {% for reg in strapi.collections.gigs %}
+
+      {% if reg.gig_type == 'Regular' %}
+      <tr>
+        <td class="table__date">
+          {% for schedule in reg.sched %}
+           <span>{{schedule.day}}</span>
+          {% endfor %}
+        </td>
+        <td class="table__venue" align="center">{{ reg.title }}</td>
+        <td class="table__address" align="center">{{ reg.address }}</td>
+        <td class="table__button" align="right">
+          <a href="{{ reg.url }}" target="_blank" class="cbtn-accent btn">Read Info</a>
+        </td>
+      </tr>
+      {% endif %}
+
+      {% endfor %}
+
+
     </tbody>
   </table>
 </div>

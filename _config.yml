@@ -1,5 +1,25 @@
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://rosegilmercado.netlify.app" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
-title: "" # the name of your site, e.g. ACME Corp.
+title: "Akostika" # the name of your site, e.g. ACME Corp.
 
 exclude: ["source", "node_modules", "mix-manifest.json", "package-lock.json", "package.json", "webpack.mix.js", ".jekyll-cache"]
+
+plugins:  
+  - jekyll-feed
+  - jekyll-strapi
+
+
+strapi:
+  endpoint: https://strapi-akostika.herokuapp.com
+  collections:
+    pages:
+      type: pages
+    photos:
+      type: photos
+    videos:
+      type: videos
+    gigs:
+      type: gigs
+      permalink: /gig/:slug/
+      layout: gig.html
+      output: true

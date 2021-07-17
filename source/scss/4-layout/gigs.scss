@@ -8,12 +8,21 @@
 
 td{
   padding:1rem !important;
+  text-transform: uppercase;
   @media only screen and (max-width:800px){
    font-size:0.875rem;
 
    a{
      font-size:0.875rem !important;
    }
+  }
+}
+
+.table__date{
+  span:not(:last-child){
+    &:after{
+      content:", ";
+    }
   }
 }
 
