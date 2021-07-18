@@ -1,0 +1,28 @@
+---
+---
+[
+  {% for album in strapi.collections.photos %}
+    {
+    "id": "{{ album.id }}",
+    "album_title": "{{ album.title  }}",
+    "year": "{{ album.year.name }}",
+    "create_date": "{{ album.created_at | date: '%B %-d, %Y'}}",
+    "photos": [
+      {% for photo in album.album %}
+          {
+        "id": "{{photo.id}}",
+        "alt": "{{photo.alternativeText}}",
+        "caption": "{{photo.caption}}",
+        "width": "{{photo.width}}",
+        "height": "{{photo.width}}",
+        "url": "{{ photo.formats.medium.url }}",
+        "thumbnail": "{{photo.formats.thumbnail.url}}",
+        "created_at": "{{photo.created_at}}"
+      },
+      {% endfor %}
+    ]
+  } 
+    {% unless forloop.last %},
+  {% endunless %}
+  {% endfor %}
+]

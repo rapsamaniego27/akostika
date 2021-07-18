@@ -18,6 +18,8 @@ strapi:
       type: photos
     videos:
       type: videos
+    years:
+      type: years
     gigs:
       type: gigs
       permalink: /gig/:slug/

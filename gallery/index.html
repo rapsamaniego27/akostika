@@ -4,7 +4,6 @@ layout: secondary
 
 <div class="container mb-60">
   <h2 class="mt-40">Gallery</h2>
-
   <div class="gallery__filter mt-40">
     <div class="gallery__filter-config row">
       <div class="col-auto">
@@ -17,13 +16,23 @@ layout: secondary
           <span class="gallery__filter-arrow"></span>
         </div>
       </div>
-
+      
       <div class="col-auto">
         <label for="" class="gallery__filter-label">Year: </label>
         <div class="gallery__filter-select">
-          <select name="" id="">
-            <option value="2019">2019</option>
-            <option value="2018">2018</option>
+          <select name="gallery-year" id="galleryYear" class="gallery__year">
+            <!-- Gets the years and selects the 2nd to the last year to display photos -->
+            {% assign selected_index = strapi.collections.years | sort: 'name' | size | minus: 2 %}
+            {% assign sorted_years = strapi.collections.years | sort: 'name' %}
+           
+            {% for year in sorted_years %}
+              {% if year.name == sorted_years[selected_index].name %}
+                <option value="{{year.name}}" selected>{{year.name}}</option>
+              {% else %}
+                <option value="{{year.name}}">{{year.name}}</option>
+              {% endif %}
+            {% endfor %}
+
           </select>
           <span class="gallery__filter-arrow"></span>
         </div>
@@ -32,17 +41,31 @@ layout: secondary
 
     <div class="gallery__filter-album row mt-20">
       <label for="" class="gallery__filter-label">Albums:</label>
-
+      
       <div class="gallery__filter-album__list">
-        <a href="#" target="_blank" class="gallery__album__item gallery__album__item--current">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
-        <a href="#" target="_blank" class="gallery__album__item">Folk Society</a>
+        {% assign selected_year = sorted_years[selected_index].name%}
+        {% assign photo_counter = 0 %}
+        {% for photo in strapi.collections.photos %}
+          {% if photo.year.name ==  selected_year %}
+
+          <!-- Adds a plus one to the photo counter then checks if its the 1st index, then add the CURRENT class -->
+            {% assign photo_counter = photo_counter | plus: 1  %}
+
+            {% if photo_counter == 1 %}
+              <a href="#" target="_blank" class="gallery__album__item gallery__album__item--current" data-id="{{photo.id}}">
+                {{ photo.album_title }}
+                
+              </a>
+            {% else %}
+              <a href="#" target="_blank" class="gallery__album__item" data-id="{{photo.id}}">
+                {{ photo.album_title }}
+              </a>
+            {% endif %}
+
+          {% endif %}
+        {% endfor %}
+
+        
       </div>
     </div>
   </div>
@@ -50,7 +73,7 @@ layout: secondary
   <span class="gallery__results">12 results found ...</span>
 
 
-  <!-- <div class="gallery__photos mt-40">
+  <div class="gallery__photos mt-40">
     <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img2.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img3.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
@@ -59,9 +82,9 @@ layout: secondary
     <img src="{{site.baseurl}}/assets/files/img6.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img7.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
     <img src="{{site.baseurl}}/assets/files/img8.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-  </div> -->
+  </div>
 
-  <div class="gallery__videos mt-40">
+  <div class="gallery__videos mt-40 d-none">
 
     <div class="gallery__video-wrapper">
       <div class="gallery__video">
@@ -81,7 +104,7 @@ layout: secondary
         <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
     
       </div>
-      <h6 class="hex-dark gallery__video-title">Akostika - Proud Mary Cover</h6>
+      <h6 class="hex-dark gallery__video-title">Akostika - Sun and Moon</h6>
       <p class="gallery__video-date">July 18, 2021</p>
     </div>
 
@@ -92,8 +115,8 @@ layout: secondary
         <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
     
       </div>
-      <h6 class="hex-dark gallery__video-title">Akostika - Proud Mary Cover</h6>
-      <p class="gallery__video-date">July 18, 2021</p>
+      <h6 class="hex-dark gallery__video-title">Christmas Party</h6>
+      <p class="gallery__video-date">June 12, 2021</p>
     </div>
 
     <div class="gallery__video-wrapper">
@@ -103,8 +126,8 @@ layout: secondary
         <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
     
       </div>
-      <h6 class="hex-dark gallery__video-title">Akostika - Proud Mary Cover</h6>
-      <p class="gallery__video-date">July 18, 2021</p>
+      <h6 class="hex-dark gallery__video-title">Time After Time</h6>
+      <p class="gallery__video-date">October 21, 2021</p>
     </div>
 
     <div class="gallery__video-wrapper">
@@ -114,8 +137,8 @@ layout: secondary
         <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
     
       </div>
-      <h6 class="hex-dark gallery__video-title">Akostika - Proud Mary Cover</h6>
-      <p class="gallery__video-date">July 18, 2021</p>
+      <h6 class="hex-dark gallery__video-title">Akostika - Devil Went Down to Georgia</h6>
+      <p class="gallery__video-date">November 4, 2021</p>
     </div>
 
     <div class="gallery__video-wrapper">
@@ -125,8 +148,8 @@ layout: secondary
         <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="gallery__video-thumb">
     
       </div>
-      <h6 class="hex-dark gallery__video-title">Akostika - Proud Mary Cover</h6>
-      <p class="gallery__video-date">July 18, 2021</p>
+      <h6 class="hex-dark gallery__video-title">Autumn Leaves</h6>
+      <p class="gallery__video-date">December 24, 2021</p>
     </div>
     
 

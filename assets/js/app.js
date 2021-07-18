@@ -33,6 +33,9 @@ class Gallery{
   this.modalClose = document.querySelector('#cmodalClose');
   this.modalPrev = document.querySelector('.cmodal__prev');
   this.modalNext = document.querySelector('.cmodal__next');
+
+  this.galleryPhotos = document.querySelector('.gallery__photos');
+  this.galleryVideos = document.querySelector('.gallery__videos');
   
 
    this.modalImg = document.querySelector('.cmodal-img');
@@ -140,11 +143,18 @@ class Gallery{
        
         videoModal.classList.remove('cmodal--hide');
         photoModal.classList.add('cmodal--hide');
+
+        this.galleryVideos.classList.remove('d-none');
+        this.galleryPhotos.classList.add('d-none');
+
       }
       
       if (mediaType == 'photos') {
         videoModal.classList.add('cmodal--hide');
         photoModal.classList.remove('cmodal--hide');
+
+        this.galleryVideos.classList.add('d-none');
+        this.galleryPhotos.classList.remove('d-none');
       }
     });
  }
