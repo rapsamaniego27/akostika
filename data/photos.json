@@ -4,7 +4,7 @@
   {% for album in strapi.collections.photos %}
     {
     "id": "{{ album.id }}",
-    "album_title": "{{ album.title  }}",
+    "album_title": "{{ album.album_title  }}",
     "year": "{{ album.year.name }}",
     "create_date": "{{ album.created_at | date: '%B %-d, %Y'}}",
     "photos": [
@@ -16,9 +16,11 @@
         "width": "{{photo.width}}",
         "height": "{{photo.width}}",
         "url": "{{ photo.formats.medium.url }}",
-        "thumbnail": "{{photo.formats.thumbnail.url}}",
+        "thumbnail": "{{photo.formats.small.url}}",
         "created_at": "{{photo.created_at}}"
-      },
+      }
+        {% unless forloop.last %},
+        {% endunless %}
       {% endfor %}
     ]
   } 

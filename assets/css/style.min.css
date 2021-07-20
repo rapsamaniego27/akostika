@@ -4206,13 +4206,18 @@ td {
   content: ", ";
 }
 
-.gallery__img {
+.gallery__img-link {
   width: 318px;
   height: 178px;
+  border-radius: 12px;
+}
+
+.gallery__img {
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 12px;
-  cursor: pointer;
 }
 
 .gallery__photos {

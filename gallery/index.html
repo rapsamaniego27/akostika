@@ -8,9 +8,9 @@ layout: secondary
     <div class="gallery__filter-config row">
       <div class="col-auto">
         <label for="" class="gallery__filter-label">Type: </label>
-        <div class="gallery__filter-select">
-          <select name="" id="">
-            <option value="photos">Photos</option>
+        <div class="gallery__filter-select gallery__filter-type">
+          <select name="" id="" class="gallery__type">
+            <option value="photos" selected>Photos</option>
             <option value="videos">Videos</option>
           </select>
           <span class="gallery__filter-arrow"></span>
@@ -19,7 +19,7 @@ layout: secondary
       
       <div class="col-auto">
         <label for="" class="gallery__filter-label">Year: </label>
-        <div class="gallery__filter-select">
+        <div class="gallery__filter-select gallery__filter-year">
           <select name="gallery-year" id="galleryYear" class="gallery__year">
             <!-- Gets the years and selects the 2nd to the last year to display photos -->
             {% assign selected_index = strapi.collections.years | sort: 'name' | size | minus: 2 %}
@@ -74,14 +74,30 @@ layout: secondary
 
 
   <div class="gallery__photos mt-40">
-    <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img2.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img3.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img4.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img5.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img6.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img7.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
-    <img src="{{site.baseurl}}/assets/files/img8.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img2.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img3.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img4.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img5.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img6.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img7.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
+    <a href="#" class="gallery__img-link">
+      <img src="{{site.baseurl}}/assets/files/img8.jpg" alt="Sample Alt" title="Sample Title" class="gallery__img">
+    </a>
   </div>
 
   <div class="gallery__videos mt-40 d-none">

@@ -4,8 +4,8 @@ class Data{
  }
 
  //Methods
- async fetchSiblings(){
-    let api = '../data/siblings.json';
+ async fetchPhotos(){
+    let api = '../../data/photos.json';
     let response = await fetch(api);
     let data = await response.json();
  
