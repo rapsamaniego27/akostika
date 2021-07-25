@@ -101,6 +101,8 @@
 .gallery__album__item--current{
   color:var(--white);
   background:var(--accent);
+  pointer-events: none;
+  cursor: default;
 }
 
 .gallery__results{

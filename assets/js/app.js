@@ -210,9 +210,9 @@ class Gallery{
      data.fetchPhotos()
        .then(data => {
          let html = ``;
-          data.forEach((album) => {
+          data.forEach((album, index) => {
             if(album.year == year){
-              html += `${this.UI.makeAlbum(album)}`;
+              html += `${this.UI.makeAlbum(album, index)}`;
             }
           });
 
@@ -241,12 +241,18 @@ class Gallery{
      album.addEventListener('click', (e) => {
        e.preventDefault();
        const id = album.dataset.id;
+       /* Removes the former current album */
+      const currentAlbum = document.querySelector('.gallery__album__item--current'); 
+
+      currentAlbum.classList.remove('gallery__album__item--current');
+      e.target.classList.add('gallery__album__item--current');
 
        const searchedAlbum = data.find(album => album.id == id);
 
        /* Creates the UI for the album */
        albumHTML += `${this.UI.makePhotoCards(searchedAlbum)}`;
        this.galleryPhotos.innerHTML = albumHTML;
+       albumHTML = ``;
 
        const photos = document.querySelectorAll('.gallery__img-link');
 
@@ -255,6 +261,7 @@ class Gallery{
        photos.forEach(photo => {
          photosArr.push(photo.children[0].src);
         });
+        
         
         
         /* Binds a click to view photo in modal */
