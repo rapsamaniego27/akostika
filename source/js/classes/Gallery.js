@@ -33,24 +33,53 @@ class Gallery{
     event.preventDefault();
 
     const current = document.querySelector('.current--photo');
-
-    current.nextElementSibling.classList.add('current--photo');
+    const photos = document.querySelectorAll('.gallery__img-link');
+    
 
     const next = current.nextElementSibling;
+    const modalImg = document.querySelector('.cmodal-img');
 
+    /* Checks if its the last picture which returns null */
+    /* Else it will just keep looking for next element sibling */
+    if (next == null) {
+      photos[0].classList.add('current--photo');
+      modalImg.src = photos[0].firstElementChild.src;
+    }else{
+      next.classList.add('current--photo');
+      modalImg.src = next.firstElementChild.currentSrc;
+    }
     current.classList.remove('current--photo');
 
-
-    const modalImg = document.querySelector('.cmodal-img');
-    modalImg.src = next.children[0].src;
-
-    /* this.modalImg.dataset.index = parseInt(this.modalImg.dataset.index) + 1;
- 
-    if (this.modalImg.dataset.index > photosArr.length - 1){
-      this.modalImg.dataset.index = 0;
-      this.modalImg.src = photosArr[0];
-    }*/
+    
+    
   }
+
+  /* Previous */
+   this.prevPhoto = function (event) {
+     event.preventDefault();
+
+     const current = document.querySelector('.current--photo');
+     const photos = document.querySelectorAll('.gallery__img-link');
+
+
+     const prev = current.previousElementSibling;
+     const modalImg = document.querySelector('.cmodal-img');
+
+
+     /* Checks if its the last picture which returns null */
+     /* Else it will just keep looking for next element sibling */
+     if (prev == null) {
+       photos[photos.length - 1].classList.add('current--photo');
+       modalImg.src = photos[photos.length - 1].firstElementChild.src;
+     } else {
+       prev.classList.add('current--photo');
+       modalImg.src = prev.firstElementChild.currentSrc;
+     }
+     current.classList.remove('current--photo');
+
+     
+
+   }
  }
 
  //Methods
@@ -82,6 +111,7 @@ class Gallery{
   
 
     this.modalNext.removeEventListener('click', this.nextPhoto, false);
+    this.modalPrev.removeEventListener('click', this.prevPhoto, false);
   });
   
 
@@ -107,31 +137,10 @@ class Gallery{
  }
 
  bindNavigations(photosArr = '', clickedPhoto, photoIndex){
-   /* if(photosArr == ''){
-      photosArr = this.generatePhotosArray(this.photos);
-      console.log('true');
-   }else{
-     console.log(photosArr);
-   } */
-
 
    this.modalNext.addEventListener('click', this.nextPhoto, false);
+   this.modalPrev.addEventListener('click', this.prevPhoto, false);
 
-
-
-   this.modalPrev.addEventListener('click', (e) => {
-     e.preventDefault();
-
-     this.modalImg.src = photosArr[parseInt(this.modalImg.dataset.index) - 1];
-     this.modalImg.dataset.index = parseInt(this.modalImg.dataset.index) - 1;
-
-     if (this.modalImg.dataset.index < 0 ) {
-       this.modalImg.dataset.index = photosArr.length - 1;
-       this.modalImg.src = photosArr[photosArr.length - 1];
-     }
-
-
-   });
  }
 
  bindMediaType(){
