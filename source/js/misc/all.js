@@ -1,6 +1,18 @@
+window.addEventListener('DOMContentLoaded', () => {
+  const galleryFilter = document.querySelector('.gallery__filter');
 
-const galleryFilter = document.querySelector('.gallery__filter');
+  if (isInPage(galleryFilter)) {
+    const gallery = new Gallery();
 
-if (isInPage(galleryFilter)) {
-  const gallery = new Gallery();
-}
+
+    
+
+  }
+
+
+
+});
+
+
+
+

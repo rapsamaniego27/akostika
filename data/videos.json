@@ -4,24 +4,23 @@
   {% for album in strapi.collections.videos %}
     {
       "id": "{{ album.id }}",
-      "album_title": "{{ album.title  }}",
+      "album_title": "{{ album.album_title  }}",
       "year": "{{ album.year.name }}",
       "create_date": "{{ album.created_at | date: '%B %-d, %Y'}}",
       "videos": [
         {% for video in album.info %}
           {
             "id": "{{video.id}}",
-            "title": "{{video.title}}",
-            "embed": [
-              '{{video.embed}}'
-            ],
-            "date_recorded": "{{video.date_recorded}}",
+            "title": "{{video.title | escape }}",
+            "embed": "{{video.embed | escape }}",
+            "date_recorded": "{{video.date_recorded | date: '%B %-d, %Y'}}",
             "thumbnail": "{{video.thumbnail.url}}"
-          },
+          }{% unless forloop.last %},{% endunless %}
         {% endfor %}
       ]
-      
+
     } 
-    {% unless forloop.last %},{% endunless %}
+    {% unless forloop.last %},
+  {% endunless %}
   {% endfor %}
 ]

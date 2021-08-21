@@ -37,4 +37,24 @@ class UI{
 
    return layout;
  }
+
+ makeVideoCards(album){
+   let layout = ``;
+
+   album.videos.forEach((video, index) => {
+     layout += `
+        <a href="#" class="gallery__video-wrapper" data-embed="${video.embed}" data-id="${video.id}">
+        <div class="gallery__video">
+          <span href="#" class="gallery__video-icon"><i class="fas fa-play"></i></span>
+          <span class="gallery__video-overlay"></span>
+          <img src="${video.thumbnail}" alt="" title="" class="gallery__video-thumb">
+        </div>
+        <h6 class="hex-dark gallery__video-title">${video.title}</h6>
+        <p class="gallery__video-date">${video.date_recorded}</p>
+      </a>
+     `;
+   });
+
+   return layout;
+ }
 }

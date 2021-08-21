@@ -11,6 +11,14 @@ class Data{
  
     return data;
   }
+
+  async fetchVideos() {
+    let api = '../../data/videos.json';
+    let response = await fetch(api);
+    let data = await response.json();
+
+    return data;
+  }
 }
 
 /* Run this for testing API fetching */
@@ -41,6 +49,7 @@ class Gallery{
   
 
    this.modalImg = document.querySelector('.cmodal-img');
+   this.modalVideo = document.querySelector('.cmodal-content__video');
 
   /* this.bindOpenModal(this.photos);
   this.generatePhotosArray(this.photos); */
@@ -78,7 +87,7 @@ class Gallery{
     
   }
 
-  /* Previous */
+  /* function Previous Photo */
    this.prevPhoto = function (event) {
      event.preventDefault();
 
@@ -102,6 +111,57 @@ class Gallery{
      current.classList.remove('current--photo');
 
      
+
+   }
+
+   /* Function nextVideo */
+   this.nextVideo = function (event) {
+     event.preventDefault();
+
+     const current = document.querySelector('.current--video');
+     const videos = document.querySelectorAll('.gallery__video-wrapper');
+
+     const modalVideo = document.querySelector('.cmodal-content__video');
+     const next = current.nextElementSibling;
+
+
+
+     /* Checks if its the last picture which returns null */
+     /* Else it will just keep looking for next element sibling */
+     if (next == null) {
+       videos[0].classList.add('current--video');
+       modalVideo.innerHTML = `${htmlDecode(videos[0].dataset.embed)}`;
+     } else {
+       next.classList.add('current--video');
+       modalVideo.innerHTML = `${htmlDecode(next.dataset.embed)}`;
+     }
+     current.classList.remove('current--video');
+
+
+   }
+
+   this.prevVideo = function (event) {
+     event.preventDefault();
+
+     const current = document.querySelector('.current--video');
+     const videos = document.querySelectorAll('.gallery__video-wrapper');
+
+     const modalVideo = document.querySelector('.cmodal-content__video');
+     const prev = current.previousElementSibling;
+
+
+
+     /* Checks if its the last picture which returns null */
+     /* Else it will just keep looking for next element sibling */
+     if (prev == null) {
+       videos[videos.length - 1].classList.add('current--video');
+       modalVideo.innerHTML = `${htmlDecode(videos[videos.length - 1].dataset.embed)}`;
+     } else {
+       prev.classList.add('current--video');
+       modalVideo.innerHTML = `${htmlDecode(prev.dataset.embed)}`;
+     }
+     current.classList.remove('current--video');
+
 
    }
  }
@@ -136,6 +196,9 @@ class Gallery{
 
     this.modalNext.removeEventListener('click', this.nextPhoto, false);
     this.modalPrev.removeEventListener('click', this.prevPhoto, false);
+
+    this.modalNext.removeEventListener('click', this.nextVideo, false);
+    this.modalPrev.removeEventListener('click', this.prevVideo, false);
   });
   
 
@@ -169,9 +232,11 @@ class Gallery{
 
  bindMediaType(){
    const mediaSelect = document.querySelector('.gallery__filter-type');
+   const data = new Data();
 
     mediaSelect.addEventListener('input', (e)=> {
       const mediaType = e.target.value;
+      const year = document.querySelector('.gallery__year').value;
 
       const videoModal = document.querySelector('.cmodal-content__video');
       const photoModal = document.querySelector('.cmodal-content__image');
@@ -183,6 +248,19 @@ class Gallery{
 
         this.galleryVideos.classList.remove('d-none');
         this.galleryPhotos.classList.add('d-none');
+
+        data.fetchVideos()
+          .then(data => {
+            let html = ``;
+            data.forEach((album, index) => {
+              if (album.year == year) {
+                html += `${this.UI.makeAlbum(album, index)}`;
+              }
+            });
+
+            this.filterAlbumList.innerHTML = html;
+          })
+          .catch(err => console.log(err));
 
       }
       
@@ -205,29 +283,55 @@ class Gallery{
    mediaYear.addEventListener('input', (e)=> {
      const year = e.target.value;
      const type = mediaType.options[mediaType.selectedIndex].text;
-    
 
-     data.fetchPhotos()
-       .then(data => {
-         let html = ``;
-          data.forEach((album, index) => {
-            if(album.year == year){
-              html += `${this.UI.makeAlbum(album, index)}`;
-            }
-          });
+     if(type == 'Photos'){
+       console.log('photos to men');
+       data.fetchPhotos()
+         .then(data => {
+           let html = ``;
+           data.forEach((album, index) => {
+             if (album.year == year) {
+               html += `${this.UI.makeAlbum(album, index)}`;
+             }
+           });
 
-          this.filterAlbumList.innerHTML = html;
+           this.filterAlbumList.innerHTML = html;
 
-          /* Binds a click to display photos in the album */
+           /* Binds a click to display photos in the album */
 
-         const albums = document.querySelectorAll('.gallery__album__item');
+           const albums = document.querySelectorAll('.gallery__album__item');
 
-         /* Binds a click event to albums to show their photos or videos */
-         this.bindAlbumClick(albums, data);
+           /* Binds a click event to albums to show their photos or videos */
+           this.bindAlbumClick(albums, data);
 
-       }).catch(err => {
-         console.log(err);
-       });
+         }).catch(err => {
+           console.log(err);
+         });
+     }else{
+       data.fetchVideos()
+         .then(data => {
+           let html = ``;
+           data.forEach((album, index) => {
+             if (album.year == year) {
+               html += `${this.UI.makeAlbum(album, index)}`;
+             }
+           });
+
+           this.filterAlbumList.innerHTML = html;
+
+           /* Binds a click to display photos in the album */
+
+           const albums = document.querySelectorAll('.gallery__album__item');
+
+           console.log(albums);
+
+           /* Binds a click event to albums to show their photos or videos */
+           this.bindVideoAlbumClick(albums, data);
+
+         }).catch(err => {
+           console.log(err);
+         });
+     }
      
      
     
@@ -282,13 +386,71 @@ class Gallery{
          });
        });
 
-       
-      
-
      });
    });
  }
  
+
+ bindVideoAlbumClick(albums, data){
+  albums.forEach(album => {
+    let albumHTML = ``;
+
+    album.addEventListener('click', (e)=> {
+      e.preventDefault();
+
+      const id = album.dataset.id;
+      
+
+      const searchedAlbum = data.find(album => album.id == id);
+
+      /* Creates the UI for the album */
+      albumHTML += `${this.UI.makeVideoCards(searchedAlbum)}`;
+      this.galleryVideos.innerHTML = albumHTML;
+      albumHTML = ``;
+
+      const videos = document.querySelectorAll('.gallery__video-wrapper');
+
+      const videosArr = [];
+
+      searchedAlbum.videos.forEach(video => {
+        videosArr[video.id] = video.embed;
+      });
+
+
+      videos.forEach((video) => {
+        video.addEventListener('click', (e)=> {
+          e.preventDefault();
+          const id = e.target.dataset.id;
+
+          /* Checks if theres a matching video id on the chosen video album */
+          const grabbedVideo = searchedAlbum.videos.find(video => video.id == id);
+
+          /* grabbedVideo returns the iframe with HTML entities, so we have to manually 
+          decode it with htmlDecode function we made */
+          this.modalVideo.innerHTML = `${htmlDecode(grabbedVideo.embed)}`;
+
+          /* Opens the modal */
+          this.modal.classList.remove('cmodal--hide');
+          this.modalOverlay.classList.remove('cmodal--hide');
+
+          video.classList.add('current--video');
+          this.bindVideoNavigations();
+        });
+      });
+
+    });
+  });
+
+ }
+
+  bindVideoNavigations() {
+
+    this.modalNext.addEventListener('click', this.nextVideo, false);
+    this.modalPrev.addEventListener('click', this.prevVideo, false);
+
+  }
+
+
 
  
 }
@@ -457,6 +619,26 @@ class UI{
 
    return layout;
  }
+
+ makeVideoCards(album){
+   let layout = ``;
+
+   album.videos.forEach((video, index) => {
+     layout += `
+        <a href="#" class="gallery__video-wrapper" data-embed="${video.embed}" data-id="${video.id}">
+        <div class="gallery__video">
+          <span href="#" class="gallery__video-icon"><i class="fas fa-play"></i></span>
+          <span class="gallery__video-overlay"></span>
+          <img src="${video.thumbnail}" alt="" title="" class="gallery__video-thumb">
+        </div>
+        <h6 class="hex-dark gallery__video-title">${video.title}</h6>
+        <p class="gallery__video-date">${video.date_recorded}</p>
+      </a>
+     `;
+   });
+
+   return layout;
+ }
 }
 let pattern;
 
@@ -481,12 +663,24 @@ function patternTest(pattern, str){
 }
 
 /* patternTest(pattern, str); */
+window.addEventListener('DOMContentLoaded', () => {
+  const galleryFilter = document.querySelector('.gallery__filter');
 
-const galleryFilter = document.querySelector('.gallery__filter');
+  if (isInPage(galleryFilter)) {
+    const gallery = new Gallery();
 
-if (isInPage(galleryFilter)) {
-  const gallery = new Gallery();
-}
+
+    
+
+  }
+
+
+
+});
+
+
+
+
 
 const navOpen = document.querySelector('#menuOpen');
 const navOverlay = document.querySelector('#cmodalOverlay');
@@ -506,4 +700,11 @@ const menuet = new Menuet({
 
 function isInPage(node) {
   return (node === document.body) ? false : document.body.contains(node);
+}
+
+function htmlDecode(input) {
+  var e = document.createElement('textarea');
+  e.innerHTML = input;
+  // handle case of empty input
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
 }

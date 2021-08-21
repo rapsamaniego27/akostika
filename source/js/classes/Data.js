@@ -11,6 +11,14 @@ class Data{
  
     return data;
   }
+
+  async fetchVideos() {
+    let api = '../../data/videos.json';
+    let response = await fetch(api);
+    let data = await response.json();
+
+    return data;
+  }
 }
 
 /* Run this for testing API fetching */
