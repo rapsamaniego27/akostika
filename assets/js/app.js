@@ -257,19 +257,59 @@ class Gallery{
                 html += `${this.UI.makeAlbum(album, index)}`;
               }
             });
+            
 
             this.filterAlbumList.innerHTML = html;
+
+            /* Binds a click to display photos in the album */
+
+            const albums = document.querySelectorAll('.gallery__album__item');
+            albums[0].classList.add('gallery__album__item--current');
+
+            /* Binds a click event to albums to show their photos or videos */
+            this.bindVideoAlbumClick(albums, data);
+            if (albums.length != 0) {
+              albums[0].click();
+            }
           })
           .catch(err => console.log(err));
-
+          
+          
       }
       
       if (mediaType == 'photos') {
+        data.fetchPhotos()
+        .then(data => {
+          let html = ``;
+          data.forEach((album, index) => {
+            if (album.year == year) {
+              html += `${this.UI.makeAlbum(album, index)}`;
+            }
+          });
+
+          this.filterAlbumList.innerHTML = html;
+
+          /* Binds a click to display photos in the album */
+
+          const albums = document.querySelectorAll('.gallery__album__item');
+          albums[0].classList.add('gallery__album__item--current');
+
+          /* Binds a click event to albums to show their photos or videos */
+          this.bindAlbumClick(albums, data);
+          if (albums.length != 0) {
+            albums[0].click();
+          }
+
+        }).catch(err => {
+          console.log(err);
+        });
+
         videoModal.classList.add('cmodal--hide');
         photoModal.classList.remove('cmodal--hide');
 
         this.galleryVideos.classList.add('d-none');
         this.galleryPhotos.classList.remove('d-none');
+
       }
     });
  }
@@ -285,7 +325,6 @@ class Gallery{
      const type = mediaType.options[mediaType.selectedIndex].text;
 
      if(type == 'Photos'){
-       console.log('photos to men');
        data.fetchPhotos()
          .then(data => {
            let html = ``;
@@ -300,9 +339,13 @@ class Gallery{
            /* Binds a click to display photos in the album */
 
            const albums = document.querySelectorAll('.gallery__album__item');
+           albums[0].classList.add('gallery__album__item--current');
 
            /* Binds a click event to albums to show their photos or videos */
            this.bindAlbumClick(albums, data);
+           if (albums.length != 0) {
+             albums[0].click();
+           }
 
          }).catch(err => {
            console.log(err);
@@ -322,11 +365,14 @@ class Gallery{
            /* Binds a click to display photos in the album */
 
            const albums = document.querySelectorAll('.gallery__album__item');
-
-           console.log(albums);
+           albums[0].classList.add('gallery__album__item--current');
 
            /* Binds a click event to albums to show their photos or videos */
            this.bindVideoAlbumClick(albums, data);
+           
+           if (albums.length != 0) {
+             albums[0].click();
+           }
 
          }).catch(err => {
            console.log(err);
@@ -590,18 +636,18 @@ class UI{
   let layout = ``;
   let currentClass = ``;
 
-  if (index == 0){
+  /* if (index == 0){
      currentClass = `gallery__album__item--current`;
-  }
+  } */
 
   layout += `
-    <a href="#" target="_blank" class="gallery__album__item ${currentClass}" data-id="${album.id}">
+    <a href="#" target="_blank" class="gallery__album__item" data-id="${album.id}">
      ${album.album_title }
 
     </a>
   `;
 
-  return layout;
+  return layout;w
  }
 
  makePhotoCards(album){
@@ -610,7 +656,7 @@ class UI{
    album.photos.forEach((photo, index) => {
      layout += `
      <a href="#" class="gallery__img-link" target="_blank">
-      <img src="${photo.thumbnail}" alt="Sample Alt" title="Sample Title" class="gallery__img" data-index="${index}">
+      <img src="${photo.thumbnail}" alt="${photo.alt}" title="${photo.alt}" class="gallery__img" data-index="${index}">
     </a>
    `;
    });
@@ -669,6 +715,20 @@ window.addEventListener('DOMContentLoaded', () => {
   if (isInPage(galleryFilter)) {
     const gallery = new Gallery();
 
+    const albums = document.querySelectorAll('.gallery__album__item');
+    const data = new Data();
+    
+   
+
+    data.fetchPhotos()
+    .then(data => {
+      gallery.bindAlbumClick(albums, data);
+      albums[0].click();
+    }).catch(err=>{
+      console.log(err);
+    })
+
+  
 
     
 

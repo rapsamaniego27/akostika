@@ -225,19 +225,59 @@ class Gallery{
                 html += `${this.UI.makeAlbum(album, index)}`;
               }
             });
+            
 
             this.filterAlbumList.innerHTML = html;
+
+            /* Binds a click to display photos in the album */
+
+            const albums = document.querySelectorAll('.gallery__album__item');
+            albums[0].classList.add('gallery__album__item--current');
+
+            /* Binds a click event to albums to show their photos or videos */
+            this.bindVideoAlbumClick(albums, data);
+            if (albums.length != 0) {
+              albums[0].click();
+            }
           })
           .catch(err => console.log(err));
-
+          
+          
       }
       
       if (mediaType == 'photos') {
+        data.fetchPhotos()
+        .then(data => {
+          let html = ``;
+          data.forEach((album, index) => {
+            if (album.year == year) {
+              html += `${this.UI.makeAlbum(album, index)}`;
+            }
+          });
+
+          this.filterAlbumList.innerHTML = html;
+
+          /* Binds a click to display photos in the album */
+
+          const albums = document.querySelectorAll('.gallery__album__item');
+          albums[0].classList.add('gallery__album__item--current');
+
+          /* Binds a click event to albums to show their photos or videos */
+          this.bindAlbumClick(albums, data);
+          if (albums.length != 0) {
+            albums[0].click();
+          }
+
+        }).catch(err => {
+          console.log(err);
+        });
+
         videoModal.classList.add('cmodal--hide');
         photoModal.classList.remove('cmodal--hide');
 
         this.galleryVideos.classList.add('d-none');
         this.galleryPhotos.classList.remove('d-none');
+
       }
     });
  }
@@ -253,7 +293,6 @@ class Gallery{
      const type = mediaType.options[mediaType.selectedIndex].text;
 
      if(type == 'Photos'){
-       console.log('photos to men');
        data.fetchPhotos()
          .then(data => {
            let html = ``;
@@ -268,9 +307,13 @@ class Gallery{
            /* Binds a click to display photos in the album */
 
            const albums = document.querySelectorAll('.gallery__album__item');
+           albums[0].classList.add('gallery__album__item--current');
 
            /* Binds a click event to albums to show their photos or videos */
            this.bindAlbumClick(albums, data);
+           if (albums.length != 0) {
+             albums[0].click();
+           }
 
          }).catch(err => {
            console.log(err);
@@ -290,11 +333,14 @@ class Gallery{
            /* Binds a click to display photos in the album */
 
            const albums = document.querySelectorAll('.gallery__album__item');
-
-           console.log(albums);
+           albums[0].classList.add('gallery__album__item--current');
 
            /* Binds a click event to albums to show their photos or videos */
            this.bindVideoAlbumClick(albums, data);
+           
+           if (albums.length != 0) {
+             albums[0].click();
+           }
 
          }).catch(err => {
            console.log(err);
