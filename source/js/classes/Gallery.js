@@ -465,6 +465,5 @@ class Gallery{
   }
 
 
-
  
 }
