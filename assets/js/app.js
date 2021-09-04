@@ -497,7 +497,6 @@ class Gallery{
   }
 
 
-
  
 }
 /* Notes:

@@ -115,16 +115,19 @@ layout: default
   <div class="container pt-40 pb-40">
     <h2>GALLERY</h2>
     <div class="section-gallery__images mt-30">
-      <img src="{{site.baseurl}}/assets/files/img1.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img2.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img3.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img4.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img5.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img6.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img7.jpg" alt="" title="" class="section-gallery__img">
-      <img src="{{site.baseurl}}/assets/files/img8.jpg" alt="" title="" class="section-gallery__img">
-    </div>
+      {% for zone in page.zone %}
 
+        {% if zone.__component == 'section.gallery' %}
+
+          {% for image in zone.featured_images %}
+      
+           <img src="{{image.url}}" alt="" title="" class="section-gallery__img">
+
+          {% endfor %}
+        {% endif %}
+            
+      {% endfor %}
+    </div>
     <a href="#" target="_blank" class="btn cbtn-accent btn-gigs mt-40">See more</a>
   </div>
 </div>

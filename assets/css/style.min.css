@@ -4050,6 +4050,10 @@ footer {
   } */
 }
 
+.section-gallery__img {
+  cursor: pointer;
+}
+
 .section-gigs__wrapper {
   display: flex;
   flex-wrap: wrap;
