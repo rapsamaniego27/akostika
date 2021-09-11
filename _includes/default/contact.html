@@ -1,0 +1,107 @@
+{% assign defaults = strapi.collections.pages | where:"id", "1" | first %}
+
+
+{% for default in defaults.zone %}
+{% if default.__component == 'info.contact' %}
+
+<div class="section-contact">
+  <div class="container-lg contact__container mt-60 mb-60 pl-md-30 pr-md-30">
+    <div class="row g-0 contact__wrapper mt-40 ">
+      <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-5">
+        <div class="contact-info__container background-accent">
+          <div class="contact-info__intro">
+            <h3 class="hex-primary">{{ default.title }}</h3>
+            <p class="hex-primary">{{ default.description }}</p>
+          </div>
+          <div class="contact-info__details">
+            <div class="contact-info__details-row">
+              <i class="fas fa-phone-alt"></i>
+              <p class="hex-dark">{{default.number}}</p>
+            </div>
+            <div class="contact-info__details-row">
+              <i class="fas fa-envelope"></i>
+              <p class="hex-dark">{{ default.email }}</p>
+            </div>
+            <div class="contact-info__details-row">
+              <i class="fas fa-map-marker-alt"></i>
+              <p class="hex-dark">{{ default.address }}</p>
+            </div>
+          </div>
+
+          <div class="contact-info__footer d-flex">
+            <ul class="social-media">
+              <li class="social-media__item">
+                <a href="https://www.instagram.com/rapunk27/" target="_blank" class="social-media__link"
+                  title="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </li>
+
+              {% for social in default.socials %}
+              <li class="social-media__item">
+                <a href="{{ social.link }}" target="_blank" class="social-media__link" title="{{social.title}}">
+                  {{social.classname}}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-6 col-xl-6 col-xxl-7">
+        <div class="contact-form__wrapper background-primary">
+          <div class="container form__container container__flex">
+            <div class="form__fields col-lg7 col-sm12">
+              <form action="POST" data-netlify="true" class="form">
+                <div class="form__two-col">
+                  <div class="form-group form-input__name">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" class="mt-10" placeholder="Type name here" required>
+                  </div>
+
+                  <div class="form-group form-input__inquiry mt-lg-20">
+                    <label for="inquiry">Inquiry type:</label>
+                    <div class="custom-select mt-10">
+                      <select name="inquiry" placeholder="Select inquiry" id="inputInquiry" required>
+                        <option value="">Choose type...</option>
+                        <option value="Guitar Lessons">Guitar Lessons</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="Offering">Offering</option>
+                        <option value="Others">Others</option>
+                      </select>
+                      <span class="custom-arrow"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group form-input__email mt-30 mt-sm-20">
+                  <label for="email">Email:</label>
+                  <input type="email" name="email" class="mt-10" placeholder="Enter your email address" required />
+                </div>
+
+                <div class="form-group form-input__message mt-30 mt-sm-20 mb-20">
+                  <label for="message">Message: </label>
+                  <textarea name="message" id="message" cols="30" rows="8" class="mt-10"
+                    placeholder="Enter message here ..." required></textarea>
+                </div>
+
+                <div class="field d-flex justify-content-center">
+                  <div data-netlify-recaptcha="true"></div>
+                </div>
+
+                <button type="submit" target="_blank" class="btn cbtn-tertiary mt-10 d-block text-center mx-auto">Send
+                  Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endfor %}

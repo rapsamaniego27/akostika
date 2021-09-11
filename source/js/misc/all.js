@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   const galleryFilter = document.querySelector('.gallery__filter');
+  const miniGallerySection = document.querySelector('.section-gallery');
 
   if (isInPage(galleryFilter)) {
     const gallery = new Gallery();
@@ -16,14 +17,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }).catch(err=>{
       console.log(err);
     })
-
-  
-
-    
-
   }
 
-
+  if (isInPage(miniGallerySection)){
+    const miniGallery = new MiniGallery();
+  }
 
 });
 
