@@ -167,6 +167,8 @@ class Gallery{
 
     this.modalNext.removeEventListener('click', this.nextVideo, false);
     this.modalPrev.removeEventListener('click', this.prevVideo, false);
+
+    this.modalVideo.innerHTML = '';
   });
   
 
