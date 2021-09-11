@@ -3499,6 +3499,10 @@ header {
   }
 }
 
+.header__main {
+  background-size: cover !important;
+}
+
 @media only screen and (max-width: 1024px) {
   .grid-container {
     display: block;
