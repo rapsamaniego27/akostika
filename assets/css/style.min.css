@@ -3858,19 +3858,18 @@ footer {
   /* background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(255,255,255,0) 61%, rgba(2,0,36,0.4) 100%),
              url(../files/banner.jpg) top center no-repeat; */
   background-size: cover;
-  height: 100vh;
 }
-@media only screen and (max-width: 1366px) {
+@media (orientation: landscape) {
   .header__main {
-    height: 70vh;
+    height: 100vh;
   }
 }
-@media only screen and (max-width: 800px) {
+@media (orientation: portrait) and (max-width: 1024px) {
   .header__main {
     height: 60vh;
   }
 }
-@media only screen and (max-width: 576px) {
+@media (orientation: portrait) and (max-width: 576px) {
   .header__main {
     height: 30vh;
   }
