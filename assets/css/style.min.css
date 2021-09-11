@@ -4315,6 +4315,12 @@ td {
   background: var(--accent);
   color: var(--white);
 }
+@media only screen and (max-width: 576px) {
+  .gallery__album__item {
+    padding: 6px;
+    font-size: 0.75rem;
+  }
+}
 
 .gallery__album__item--current {
   color: var(--white);
@@ -4631,7 +4637,9 @@ td {
 }
 @media only screen and (max-width: 480px) {
   .cmodal .cmodal-content__image {
-    height: 70vh;
+    height: 80vh;
+    width: 84%;
+    display: flex;
   }
 }
 .cmodal .cmodal-content__video {

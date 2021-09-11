@@ -96,6 +96,11 @@
     background:var(--accent);
     color:var(--white);
   }
+
+  @media only screen and (max-width:576px){
+   padding:6px;
+   font-size:0.75rem;
+  }
 }
 
 .gallery__album__item--current{
