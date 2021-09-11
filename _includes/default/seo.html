@@ -1,5 +1,23 @@
-<meta name="og:title" property="og:title" content="Akostika Band">
-<meta name="description"
-  content="Sample Description for Akostika Band">
-<meta property="og:image" content="#">
-<meta property="og:url" content="#">
+{% assign meta = strapi.collections.metas | where:"permalink", page.url | first %}
+
+
+<!-- Basic Meta -->
+<meta name="title" property="og:title" content="{{ site.title }} - {{ meta.title }}">
+<meta name="description" content="{{meta.description}}">
+<meta name="author" content="{{site.title}}">
+
+<!-- OG tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{site.url}}{{meta.permalink}}">
+<meta property="og:title" content="{{ site.title }} - {{ meta.title }}">
+<meta property="og:description" content="{{meta.description}}">
+
+<!-- Image Metas -->
+<meta property="og:image" content="{{ meta.image.url }}">
+<meta property="og:image:secure_url" content="{{ meta.image.url }}" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="{{ site.title }} - {{ meta.title }}" />
+
+<title>{{ site.title }} - {{ meta.title }} </title>

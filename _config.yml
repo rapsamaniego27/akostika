@@ -1,4 +1,4 @@
-url: "https://rosegilmercado.netlify.app" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://akostika.netlify.app" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "" # the subpath of your site, e.g. /blog
 title: "Akostika" # the name of your site, e.g. ACME Corp.
 
@@ -20,6 +20,8 @@ strapi:
       type: videos
     years:
       type: years
+    metas:
+      type: metas
     gigs:
       type: gigs
       permalink: /gig/:slug/
